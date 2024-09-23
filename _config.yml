@@ -12,7 +12,7 @@ title                    : "Yifan Zhou"
 title_separator          : "-"
 name                     : &name "Yifan Zhou"
 description              : &description "PhD Student"
-url                      : https://yfzhoucs.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+url                      : https://yifanzhou.com # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "yfzhoucs/yfzhoucs.github.io"
 
