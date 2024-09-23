@@ -5,32 +5,220 @@ permalink: /publications/
 author_profile: true
 ---
 
-{% if site.author.googlescholar %}
-  <div class="wordwrap">You can also find my articles on <a href="{{site.author.googlescholar}}">my Google Scholar profile</a>.</div>
+{% if site.author.googlescholar %} 
+ <div class="wordwrap">You can find my full list of publications on <a href="{{site.author.googlescholar}}">my Google Scholar profile</a>.</div>
 {% endif %}
+
 
 {% include base_path %}
 
-<!-- New style rendering if publication categories are defined -->
-{% if site.publication_category %}
-  {% for category in site.publication_category  %}
-    {% assign title_shown = false %}
-    {% for post in site.publications reversed %}
-      {% if post.category != category[0] %}
-        {% continue %}
-      {% endif %}
-      {% unless title_shown %}
-        <h2>{{ category[1].title }}</h2><hr />
-        {% assign title_shown = true %}
-      {% endunless %}
-      {% include archive-single.html %}
-    {% endfor %}
-  {% endfor %}
-{% else %}
-  {% for post in site.publications reversed %}
-    {% include archive-single.html %}
-  {% endfor %}
-{% endif %}
 
+
+<h2>Selected Publications</h2>
+
+<table style="width:100%;border:0px;border-color:white;border-collapse:separate;margin-right:auto;margin-left:auto;">
+  
+  <tbody>
+
+
+
+    <tr>
+      <td style="padding:20px;width:25%;vertical-align:middle;border:0px">
+        <img src="/images/auto_ma.png" width="170">
+      </td>
+      <td style="padding:20px;width:75%;vertical-align:middle;border:0px">
+        <a href="https://auto-ma.github.io/">
+          <papertitle>AutoMA: Automated Modular Attention enables Context-Rich Imitation Learning using Foundation Models</papertitle>
+        </a>
+        <br>
+        <strong>Yifan Zhou</strong>,
+        <a href="https://www.xiao-liu.me/">Xiao Liu</a>,
+        <a href="https://quanvuong.github.io/">Quan Vuong</a>,
+        <a href="http://henibenamor.weebly.com/">Heni Ben Amor</a>
+        <br>
+        <em>Under Review</em>, 2024 &nbsp; 
+        <br>
+        <a href="https://auto-ma.github.io/">website </a>
+        <p></p>
+        <p>
+          Introduces AutoMA, an imitation learning framework that supports leveraging (V)LLMs to generate rich contexts for robot training. Experiments show high data efficiency and success rate.
+        </p>
+      </td>
+    </tr>
+
+
+    <tr>
+      <td style="padding:20px;width:25%;vertical-align:middle;border:0px">
+        <img src="/images/2024_vlm_critic.gif" width="170">
+      </td>
+      <td style="padding:20px;width:75%;vertical-align:middle;border:0px">
+        <a href="https://guansuns.github.io/pages/vlm-critic/">
+          <papertitle>"Task Success" is not Enough: Investigating the Use of Video-Language Models as Behavior Critics for Catching Undesirable Agent Behaviors</papertitle>
+        </a>
+        <br>
+        <a href="https://guansuns.github.io/">Lin Guan*</a>,
+        <strong>Yifan Zhou*</strong>,
+        <a href="https://www.linkedin.com/in/denis-liu-0baa10212/">Denis Liu</a>,
+        <a href="https://yantianzha.github.io/">Yantian Zha</a>,
+        <a href="http://henibenamor.weebly.com/">Heni Ben Amor</a>,
+        <a href="https://rakaposhi.eas.asu.edu/">Subbarao Kambhampati</a>
+        <br>
+        <em>COLM</em>, 2024 &nbsp; 
+        <br>
+        <a href="https://guansuns.github.io/pages/vlm-critic/">website </a> /
+        <a href="https://arxiv.org/abs/2402.04210">arxiv</a> /
+        <a href="https://github.com/GuanSuns/VLMs-Behavior-Critic">code</a>
+
+        <p></p>
+        <p>
+          When no sound verifier is available, can we use large vision and language models (VLMs), which are approximately omniscient, as scalable Behavior Critics to catch undesirable embodied agent behaviors in videos? To answer this, we first construct a benchmark that contains diverse cases of goal-reaching yet undesirable agent policies. Then, we comprehensively evaluate VLM critics to gain a deeper understanding of their strengths and failure modes.
+        </p>
+      </td>
+    </tr>
+
+
+    <tr>
+      <td style="padding:20px;width:25%;vertical-align:middle;border:0px">
+        <img src="/images/diff_control.gif" width="170">
+      </td>
+      <td style="padding:20px;width:75%;vertical-align:middle;border:0px">
+        <a href="https://diff-control.github.io/">
+          <papertitle>Diff-Control: A Stateful Diffusion-based Policy for Imitation Learning</papertitle>
+        </a>
+        <br>
+        <a href="https://www.xiao-liu.me/">Xiao Liu</a>,
+        <strong>Yifan Zhou</strong>,
+        <a href="https://faweigend.com/">Fabian Weigend</a>,
+        <a href="https://www.brain.kyutech.ac.jp/~ikemoto/">Shuhei Ikemoto</a>,
+        <a href="http://henibenamor.weebly.com/">Heni Ben Amor</a>
+        <br>
+        <em>IROS</em>, 2024 &nbsp; 
+        <br>
+        <a href="https://diff-control.github.io/">website </a> /
+        <a href="https://diff-control.github.io/static/videos/Diff-Control.pdf">paper</a> /
+        <a href="https://www.youtube.com/watch?v=nEQtbQgPNzQ">video</a> /
+        <a href="https://github.com/ir-lab/Diff-Control">code</a>
+
+        <p></p>
+        <p>
+          Introducing Diff-Control Policy, which incorporates ControlNet functioning as a transition model that captures temporal transitions within the action space to ensure action consistency.
+        </p>
+      </td>
+    </tr>
+
+    <tr>
+      <td style="padding:20px;width:25%;vertical-align:middle;border:0px">
+        <img src="/images/rtx.png" width="170">
+      </td>
+      <td style="padding:20px;width:75%;vertical-align:middle;border:0px">
+        <a href="https://robotics-transformer-x.github.io/">
+          <papertitle>Open X-Embodiment: Robotic Learning Datasets and RT-X Models</papertitle>
+        </a>
+        <br>
+        Open X-Embodiment Collaboration
+        <br>
+        <em>ICRA</em>, 2024 &nbsp; 
+        <br>
+        <a href="https://robotics-transformer-x.github.io/">website </a> /
+        <a href="https://arxiv.org/abs/2310.08864">arxiv</a> /
+        <a href="https://www.deepmind.com/blog/scaling-up-learning-across-many-different-robot-types">blog</a>
+        <a href="https://github.com/google-deepmind/open_x_embodiment">code</a> /
+        <a href="https://docs.google.com/spreadsheets/d/1rPBD77tk60AEIGZrGSODwyyzs5FgCU9Uz3h-3_t2A9g/edit#gid=0">data</a>
+
+        <p></p>
+        <p>
+          In this paper, we assemble a dataset from 22 different robots collected through a collaboration between 21 institutions, demonstrating 527 skills (160266 tasks). We show that a high-capacity model trained on this data, which we call RT-X, exhibits positive transfer and improves the capabilities of multiple robots by leveraging experience from other platforms.
+        </p>
+      </td>
+    </tr>
+
+    <tr>
+      <td style="padding:20px;width:25%;vertical-align:middle;border:0px">
+        <img src="/images/auro.png" width="170">
+      </td>
+      <td style="padding:20px;width:75%;vertical-align:middle;border:0px">
+        <a href="https://languageforrobots.com/auro/">
+          <papertitle>Learning Modular Language-Conditioned Robot Policies through Attention</papertitle>
+        </a>
+        <br>
+        <strong>Yifan Zhou</strong>,
+        <a href="https://www.sdsonawani.com/">Shubham Sonawani</a>,
+        <a href="https://www.intel.com/content/www/us/en/research/featured-researchers/mariano-phielipp.html">Mariano Phielipp</a>,
+        <a href="http://henibenamor.weebly.com/">Heni Ben Amor</a>,
+        <a href="https://simonstepputtis.com/">Simon Stepputtis</a>
+        <br>
+        <em>Autonomous Robotics</em>, 2023 &nbsp; 
+        <br>
+        <a href="https://languageforrobots.com/auro/">website </a> /
+        <a href="https://link.springer.com/article/10.1007/s10514-023-10129-1">paper</a> /
+        <a href="https://github.com/ir-lab/ModAttn">code</a>
+
+        <p></p>
+        <p>
+          Our proposed method is an imitation learning method for language-conditioned robot policies. It demonstrates high performance on a variety of tasks. It is able to transfer to new robots in a data-efficient manner, while still keeping a high execution performance. It also accepts adding new behaviors to an existing trained policy.
+        </p>
+      </td>
+    </tr>
+
+
+    <tr></tr>
+      <td style="padding:20px;width:25%;vertical-align:middle;border:0px">
+        <img src="/images/alpha_mdf.gif" width="170">
+      </td>
+      <td style="padding:20px;width:75%;vertical-align:middle;border:0px">
+        <a href="https://alpha-mdf.github.io/">
+          <papertitle>α-MDF: An Attention-based Multimodal Differentiable Filter for Robot State Estimation</papertitle>
+        </a>
+        <br>
+        <a href="https://www.xiao-liu.me/">Xiao Liu</a>,
+        <strong>Yifan Zhou</strong>,
+        <a href="https://faweigend.com/">Fabian Weigend</a>,
+        <a href="https://www.brain.kyutech.ac.jp/~ikemoto/">Shuhei Ikemoto</a>,
+        <a href="http://henibenamor.weebly.com/">Heni Ben Amor</a>
+        <br>
+        <em>CoRL</em>, 2023 &nbsp; 
+        <br>
+        <a href="https://alpha-mdf.github.io/">website </a> /
+        <a href="https://openreview.net/forum?id=0hQMcWfjG9">paper</a> /
+        <a href="https://www.youtube.com/watch?v=OdBMquRUTdU">video</a>
+
+        <p></p>
+        <p>
+          α-MDF is an attention-based multimodal differentiable filter framework, the framework establishes the link between modern neural attention and Kalman Filters for robot state estimation.
+        </p>
+      </td>
+    </tr>
+
+    <tr>
+      <td style="padding:20px;width:25%;vertical-align:middle;border:0px">
+        <img src="/images/modattn.gif" width="170">
+      </td>
+      <td style="padding:20px;width:75%;vertical-align:middle;border:0px">
+        <a href="https://languageforrobots.com/">
+          <papertitle>Modularity through Attention: Efficient Training and Transfer of Language-Conditioned Policies for Robot Manipulation</papertitle>
+        </a>
+        <br>
+        <strong>Yifan Zhou</strong>,
+        <a href="https://www.sdsonawani.com/">Shubham Sonawani</a>,
+        <a href="https://www.intel.com/content/www/us/en/research/featured-researchers/mariano-phielipp.html">Mariano Phielipp</a>,
+        <a href="https://simonstepputtis.com/">Simon Stepputtis</a>,
+        <a href="http://henibenamor.weebly.com/">Heni Ben Amor</a>
+        <br>
+        <em>CoRL</em>, 2022 &nbsp; 
+        <br>
+        <a href="https://languageforrobots.com/">website </a> /
+        <a href="https://arxiv.org/abs/2212.04573">arxiv</a> /
+        <a href="https://www.youtube.com/watch?v=UsRKEtDDhL0">video</a> /
+        <a href="https://github.com/ir-lab/ModAttn">code</a>
+
+        <p></p>
+        <p>
+          Proposing a sample-efficient approach for training language-conditioned manipulation policies that allows for rapid training and transfer across different types of robots. By introducing a novel method, namely Hierarchical Modularity, and adopting supervised attention across multiple sub-modules, we bridge the divide between modular and end-to-end learning and enable the reuse of functional building blocks.
+        </p>
+      </td>
+    </tr>
+
+  </tbody>
+</table>
 
 
