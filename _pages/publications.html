@@ -16,7 +16,7 @@ author_profile: true
 
 <h2>Selected Publications</h2>
 
-<table style="width:100%;border:0px;border-color:white;border-collapse:separate;margin-right:auto;margin-left:auto;">
+<table class="publications" style="width:100%;border:0px;border-color:white;border-collapse:separate;margin-right:auto;margin-left:auto;">
   
   <tbody>
 
@@ -24,24 +24,65 @@ author_profile: true
 
     <tr>
       <td style="padding:20px;width:25%;vertical-align:middle;border:0px">
-        <img src="/images/auto_ma.png" width="170">
+        <img src="/images/props.gif" width="170">
       </td>
       <td style="padding:20px;width:75%;vertical-align:middle;border:0px">
-        <a href="https://auto-ma.github.io/">
-          <papertitle>AutoMA: Automated Modular Attention enables Context-Rich Imitation Learning using Foundation Models</papertitle>
-        </a>
+        <papertitle>Prompted Policy Search: Reinforcement Learning through Linguistic and Numerical Reasoning in LLMs</papertitle>
         <br>
         <strong>Yifan Zhou</strong>,
-        <a href="https://www.xiao-liu.me/">Xiao Liu</a>,
-        <a href="https://quanvuong.github.io/">Quan Vuong</a>,
+        <a href="https://sachingrover211.github.io/">Sachin Grover</a>,
+        <a href="https://scholar.google.com/citations?user=jFpEtzQAAAAJ">Mohamed El Mistiri</a>,
+        <a href="https://scholar.google.com/citations?user=zAAmfKkAAAAJ">Kamalesh Kalirathinam</a>,
+        <a href="https://k-pratyush.github.io/">Pratyush Kerhalkar</a>,
+        <a href="https://swarooprm.github.io/">Swaroop Mishra</a>,
+        <a href="https://scholar.google.com/citations?user=tnv8_FQAAAAJ">Neelesh Kumar</a>,
+        <a href="https://scholar.google.com/citations?user=upcYjw0AAAAJ">Sanket Gaurav</a>,
+        <a href="https://www.oyaaran.com/">Oya Aran</a>,
         <a href="http://henibenamor.weebly.com/">Heni Ben Amor</a>
         <br>
-        <em>Under Review</em>, 2024 &nbsp; 
+        <em>NeurIPS</em>, 2025 &nbsp;
         <br>
-        <a href="https://auto-ma.github.io/">website </a>
+        <a href="https://props-llm.github.io/">website</a> /
+        <a href="https://proceedings.neurips.cc/paper_files/paper/2025/hash/21f7467cf89c574407ef7c89a893461c-Abstract-Conference.html">paper</a> /
+        <a href="https://arxiv.org/abs/2511.21928">arxiv</a> /
+        <a href="https://github.com/yfzhoucs/props-llm">code</a>
+
         <p></p>
         <p>
-          Introduces AutoMA, an imitation learning framework that supports leveraging (V)LLMs to generate rich contexts for robot training. Experiments show high data efficiency and success rate.
+          Introduces Prompted Policy Search (ProPS), which places an LLM at the center of the policy optimization loop, proposing policy updates from both reward feedback and natural language input such as goals, domain knowledge and strategy hints. Across 15 Gymnasium tasks, ProPS outperforms all seven popular RL baselines (e.g., PPO, SAC, TRPO) on 8 tasks.
+        </p>
+      </td>
+    </tr>
+
+
+    <tr>
+      <td style="padding:20px;width:25%;vertical-align:middle;border:0px">
+        <img src="/images/sas_prompt.gif" width="170">
+      </td>
+      <td style="padding:20px;width:75%;vertical-align:middle;border:0px">
+        <papertitle>SAS-Prompt: Large Language Models as Numerical Optimizers for Robot Self-Improvement</papertitle>
+        <br>
+        <a href="http://henibenamor.weebly.com/">Heni Ben Amor</a>,
+        <a href="https://research.google/people/108185/">Laura Graesser</a>,
+        <a href="https://research.google/people/105360/">Atil Iscen</a>,
+        <a href="https://scholar.google.com/citations?user=FJO1bnsAAAAJ">David D'Ambrosio</a>,
+        <a href="http://samindaa.weebly.com/">Saminda Abeyruwan</a>,
+        <a href="https://scholar.google.com/citations?user=UO32CB0AAAAJ">Alex Bewley</a>,
+        <strong>Yifan Zhou</strong>,
+        <a href="https://scholar.google.com/citations?user=zAAmfKkAAAAJ">Kamalesh Kalirathinam</a>,
+        <a href="https://swarooprm.github.io/">Swaroop Mishra</a>,
+        <a href="https://scholar.google.com/citations?user=GuU6oA4AAAAJ">Pannag Sanketi</a>
+        <br>
+        <em>ICRA</em>, 2025 &nbsp;
+        <br>
+        <a href="https://sites.google.com/asu.edu/sas-llm/">website</a> /
+        <a href="https://arxiv.org/abs/2504.20459">arxiv</a> /
+        <a href="https://www.youtube.com/watch?v=BHv1rjJJC6Q">video</a> /
+        <a href="https://gist.github.com/yfzhoucs/a88af6d555af04c62f5db0f9be75a33f">code</a>
+
+        <p></p>
+        <p>
+          Demonstrates that LLMs can perform stochastic numerical optimization in context, and introduces the SAS Prompt (Summarize, Analyze, Synthesize), which enables an LLM to iteratively improve robot policies by learning from previous robot traces. Evaluated in simulation and on a real-robot table tennis task.
         </p>
       </td>
     </tr>
@@ -52,9 +93,7 @@ author_profile: true
         <img src="/images/2024_vlm_critic.gif" width="170">
       </td>
       <td style="padding:20px;width:75%;vertical-align:middle;border:0px">
-        <a href="https://guansuns.github.io/pages/vlm-critic/">
-          <papertitle>"Task Success" is not Enough: Investigating the Use of Video-Language Models as Behavior Critics for Catching Undesirable Agent Behaviors</papertitle>
-        </a>
+        <papertitle>"Task Success" is not Enough: Investigating the Use of Video-Language Models as Behavior Critics for Catching Undesirable Agent Behaviors</papertitle>
         <br>
         <a href="https://guansuns.github.io/">Lin Guan*</a>,
         <strong>Yifan Zhou*</strong>,
@@ -65,7 +104,7 @@ author_profile: true
         <br>
         <em>COLM</em>, 2024 &nbsp; 
         <br>
-        <a href="https://guansuns.github.io/pages/vlm-critic/">website </a> /
+        <a href="https://guansuns.github.io/pages/vlm-critic/">website</a> /
         <a href="https://arxiv.org/abs/2402.04210">arxiv</a> /
         <a href="https://github.com/GuanSuns/VLMs-Behavior-Critic">code</a>
 
@@ -82,19 +121,18 @@ author_profile: true
         <img src="/images/diff_control.gif" width="170">
       </td>
       <td style="padding:20px;width:75%;vertical-align:middle;border:0px">
-        <a href="https://diff-control.github.io/">
-          <papertitle>Diff-Control: A Stateful Diffusion-based Policy for Imitation Learning</papertitle>
-        </a>
+        <papertitle>Diff-Control: A Stateful Diffusion-based Policy for Imitation Learning</papertitle>
         <br>
         <a href="https://www.xiao-liu.me/">Xiao Liu</a>,
         <strong>Yifan Zhou</strong>,
         <a href="https://faweigend.com/">Fabian Weigend</a>,
+        <a href="https://www.sdsonawani.com/">Shubham Sonawani</a>,
         <a href="https://www.brain.kyutech.ac.jp/~ikemoto/">Shuhei Ikemoto</a>,
         <a href="http://henibenamor.weebly.com/">Heni Ben Amor</a>
         <br>
-        <em>IROS</em>, 2024 &nbsp; 
+        <em>IROS</em>, 2024 &nbsp;
         <br>
-        <a href="https://diff-control.github.io/">website </a> /
+        <a href="https://diff-control.github.io/">website</a> /
         <a href="https://diff-control.github.io/static/videos/Diff-Control.pdf">paper</a> /
         <a href="https://www.youtube.com/watch?v=nEQtbQgPNzQ">video</a> /
         <a href="https://github.com/ir-lab/Diff-Control">code</a>
@@ -111,17 +149,15 @@ author_profile: true
         <img src="/images/rtx.png" width="170">
       </td>
       <td style="padding:20px;width:75%;vertical-align:middle;border:0px">
-        <a href="https://robotics-transformer-x.github.io/">
-          <papertitle>Open X-Embodiment: Robotic Learning Datasets and RT-X Models</papertitle>
-        </a>
+        <papertitle>Open X-Embodiment: Robotic Learning Datasets and RT-X Models</papertitle>
         <br>
         Open X-Embodiment Collaboration
         <br>
-        <em>ICRA</em>, 2024 &nbsp; 
+        <em>ICRA</em>, 2024 &nbsp; <strong style="color:#c0392b;">Best Conference Paper Award</strong>
         <br>
-        <a href="https://robotics-transformer-x.github.io/">website </a> /
+        <a href="https://robotics-transformer-x.github.io/">website</a> /
         <a href="https://arxiv.org/abs/2310.08864">arxiv</a> /
-        <a href="https://www.deepmind.com/blog/scaling-up-learning-across-many-different-robot-types">blog</a>
+        <a href="https://www.deepmind.com/blog/scaling-up-learning-across-many-different-robot-types">blog</a> /
         <a href="https://github.com/google-deepmind/open_x_embodiment">code</a> /
         <a href="https://docs.google.com/spreadsheets/d/1rPBD77tk60AEIGZrGSODwyyzs5FgCU9Uz3h-3_t2A9g/edit#gid=0">data</a>
 
@@ -137,9 +173,7 @@ author_profile: true
         <img src="/images/auro.png" width="170">
       </td>
       <td style="padding:20px;width:75%;vertical-align:middle;border:0px">
-        <a href="https://languageforrobots.com/auro/">
-          <papertitle>Learning Modular Language-Conditioned Robot Policies through Attention</papertitle>
-        </a>
+        <papertitle>Learning Modular Language-Conditioned Robot Policies through Attention</papertitle>
         <br>
         <strong>Yifan Zhou</strong>,
         <a href="https://www.sdsonawani.com/">Shubham Sonawani</a>,
@@ -147,9 +181,9 @@ author_profile: true
         <a href="http://henibenamor.weebly.com/">Heni Ben Amor</a>,
         <a href="https://simonstepputtis.com/">Simon Stepputtis</a>
         <br>
-        <em>Autonomous Robotics</em>, 2023 &nbsp; 
+        <em>Autonomous Robots</em>, 2023 &nbsp;
         <br>
-        <a href="https://languageforrobots.com/auro/">website </a> /
+        <a href="https://languageforrobots.com/auro/">website</a> /
         <a href="https://link.springer.com/article/10.1007/s10514-023-10129-1">paper</a> /
         <a href="https://github.com/ir-lab/ModAttn">code</a>
 
@@ -161,26 +195,24 @@ author_profile: true
     </tr>
 
 
-    <tr></tr>
+    <tr>
       <td style="padding:20px;width:25%;vertical-align:middle;border:0px">
         <img src="/images/alpha_mdf.gif" width="170">
       </td>
       <td style="padding:20px;width:75%;vertical-align:middle;border:0px">
-        <a href="https://alpha-mdf.github.io/">
-          <papertitle>α-MDF: An Attention-based Multimodal Differentiable Filter for Robot State Estimation</papertitle>
-        </a>
+        <papertitle>α-MDF: An Attention-based Multimodal Differentiable Filter for Robot State Estimation</papertitle>
         <br>
         <a href="https://www.xiao-liu.me/">Xiao Liu</a>,
         <strong>Yifan Zhou</strong>,
-        <a href="https://faweigend.com/">Fabian Weigend</a>,
         <a href="https://www.brain.kyutech.ac.jp/~ikemoto/">Shuhei Ikemoto</a>,
         <a href="http://henibenamor.weebly.com/">Heni Ben Amor</a>
         <br>
-        <em>CoRL</em>, 2023 &nbsp; 
+        <em>CoRL</em>, 2023 &nbsp;
         <br>
-        <a href="https://alpha-mdf.github.io/">website </a> /
+        <a href="https://alpha-mdf.github.io/">website</a> /
         <a href="https://openreview.net/forum?id=0hQMcWfjG9">paper</a> /
-        <a href="https://www.youtube.com/watch?v=OdBMquRUTdU">video</a>
+        <a href="https://www.youtube.com/watch?v=OdBMquRUTdU">video</a> /
+        <a href="https://github.com/ir-lab/alpha-MDF">code</a>
 
         <p></p>
         <p>
@@ -194,9 +226,7 @@ author_profile: true
         <img src="/images/modattn.gif" width="170">
       </td>
       <td style="padding:20px;width:75%;vertical-align:middle;border:0px">
-        <a href="https://languageforrobots.com/">
-          <papertitle>Modularity through Attention: Efficient Training and Transfer of Language-Conditioned Policies for Robot Manipulation</papertitle>
-        </a>
+        <papertitle>Modularity through Attention: Efficient Training and Transfer of Language-Conditioned Policies for Robot Manipulation</papertitle>
         <br>
         <strong>Yifan Zhou</strong>,
         <a href="https://www.sdsonawani.com/">Shubham Sonawani</a>,
@@ -206,7 +236,7 @@ author_profile: true
         <br>
         <em>CoRL</em>, 2022 &nbsp; 
         <br>
-        <a href="https://languageforrobots.com/">website </a> /
+        <a href="https://languageforrobots.com/">website</a> /
         <a href="https://arxiv.org/abs/2212.04573">arxiv</a> /
         <a href="https://www.youtube.com/watch?v=UsRKEtDDhL0">video</a> /
         <a href="https://github.com/ir-lab/ModAttn">code</a>

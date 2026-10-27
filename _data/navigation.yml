@@ -8,20 +8,5 @@ main:
   - title: "Publications"
     url: /publications/
 
-  # - title: "Talks"
-  #   url: /talks/    
-
-  # - title: "Teaching"
-  #   url: /teaching/    
-    
-  # - title: "Portfolio"
-  #   url: /portfolio/
-        
-  # - title: "Blog Posts"
-  #   url: /year-archive/
-    
   - title: "CV"
-    url: /files/Yifan Zhou 5.7.pdf
-    
-  # - title: "Guide"
-  #   url: /markdown/
+    url: /files/Yifan_Zhou_CV.pdf

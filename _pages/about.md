@@ -7,17 +7,28 @@ redirect_from:
   - /about.html
 ---
 
-Hello! I’m Yifan Zhou, currently a PhD student at Interactive Robotics Lab at Arizona State University, supervised by [Prof. Heni Ben Amor](http://henibenamor.weebly.com/). My primary research interests lie in **Robot Learning** and **Large Models**. My publications are shown at **CoRL**, **COLM**, **IROS**, **ICRA**, etc. In my PhD research, I majorly focus on 2 topics:
+Hello! I’m Yifan Zhou, a Software Engineer at Google working on [Gemini for Google Workspace](https://workspace.google.com/solutions/ai/), an agentic LLM assistant across Google Workspace apps such as Docs, Slides, Chat and Gmail.
+
+Prior to that, I obtained my Ph.D. in Computer Science at Arizona State University, where I worked at the Interactive Robotics Lab under the supervision of [Prof. Heni Ben Amor](http://henibenamor.weebly.com/). My research focused on **Language-Conditioned Robot Learning** and **LLM Agents**, and my publications are shown at **NeurIPS**, **CoRL**, **COLM**, **IROS**, **ICRA**, etc. In my PhD research, I mainly focused on 2 topics:
 
 **(1)** Study of data-efficient imitation learning methods for language-conditioned robot manipulation, by either improving transformer models, or harnessing foundation models for higher data quality.
 
-**(2)** Leveraging (V)LLMs as a guidance for embodied robot behavior, with the insight that (V)LLMs are capable of providing critiques for robots or maneuvering robot actions for better styles.
+**(2)** Leveraging (V)LLMs as a guidance for embodied robot behavior, with the insight that (V)LLMs are capable of providing critiques for robots, maneuvering robot actions for better styles, or even directly optimizing robot policies through in-context linguistic and numerical reasoning.
 
-\[ [Publications](publications/) \]  \[ [CV](files/Yifan Zhou 5.7.pdf) \]
+\[ [Publications](/publications/) \]  \[ [CV](/files/Yifan_Zhou_CV.pdf) \]
 
 
 Work Experience
 ------
+<p style="margin-bottom: 0;"><b>Google LLC</b></p>
+<p style="margin-top: 0; margin-bottom: 0;">Software Engineer</p>
+<p style="margin-top: 0; margin-bottom: 0;"><i>Aug 2025 - Present</i></p>
+<ul style="margin-top: 0">
+  <li style="margin-top: 0; margin-bottom: 0;">Working on <strong>Gemini for Google Workspace</strong>, a cutting-edge agentic AI assistant which empowers users across multiple Google Workspace apps, including Docs, Slides, Chat, Gmail, etc.</li>
+  <li style="margin-top: 0; margin-bottom: 0;">Highly involved in <strong>data, eval, and quality</strong> of this multi-agent LLM harness, i.e., curating evalsets that can reflect the losses from user feedback, implementing eval infra accordingly, and hillclimbing the gaps.</li>
+  <li style="margin-top: 0">Worked closely with first-party teams to onboard new features to this agentic system.</li>
+</ul>
+
 <p style="margin-bottom: 0;"><b>Google LLC</b></p>
 <p style="margin-top: 0; margin-bottom: 0;">Software Engineering Intern</p>
 <p style="margin-top: 0; margin-bottom: 0;"><i>Summer 2024</i></p>
@@ -41,7 +52,7 @@ Education
 ------
 **Arizona State University**\
 Ph.D. in Computer Science\
-*2021 - Present*
+*2021 - 2025*
 
 **Carnegie Mellon University**\
 M.S. in Artificial Intelligence and Innovation\

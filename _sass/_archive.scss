@@ -243,3 +243,36 @@
     }
   }
 }
+
+/* Selected publications table (_pages/publications.html) */
+
+table.publications {
+  papertitle {
+    display: inline-block;
+    margin-bottom: 0.3em;
+    font-size: 1.2em;
+    font-weight: bold;
+    line-height: 1.35;
+    color: $text-color;
+  }
+}
+
+/* On narrow screens, stack each thumbnail above its text so the
+   table never forces the page wider than the viewport. */
+@media (max-width: #{$medium - 1px}) {
+  table.publications {
+    tr,
+    td {
+      display: block;
+    }
+
+    td {
+      width: 100% !important;    /* override inline cell widths */
+      padding: 0.5em 0 !important;
+    }
+
+    tr {
+      margin-bottom: 1.5em;
+    }
+  }
+}

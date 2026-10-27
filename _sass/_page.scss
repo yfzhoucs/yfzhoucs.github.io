@@ -59,6 +59,14 @@
     font-size: 1em;
   }
 
+  /* justify body text so every line ends flush with the column edge
+     (left-aligned on narrow screens to avoid wide word gaps) */
+  p, li {
+    @include breakpoint($medium) {
+      text-align: justify;
+    }
+  }
+
   /* paragraph indents */
   p {
     margin: 0 0 $indent-var;
