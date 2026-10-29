@@ -8,5 +8,8 @@ main:
   - title: "Publications"
     url: /publications/
 
+  - title: "SRE-0.1"
+    url: /sre-0.1/
+
   - title: "CV"
     url: /files/Yifan_Zhou_CV.pdf

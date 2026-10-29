@@ -1,0 +1,334 @@
+---
+title: "SRE-0.1: Spatial Reasoning Eval"
+permalink: /sre-0.1/
+author_profile: false
+excerpt: "Twelve interactive 3D manipulation tasks, three frontier models, one physics simulator."
+---
+
+<style>
+#main > .page { width: 100%; float: none; padding-left: 0; padding-right: 0; }
+#main > .page .page__inner-wrap { float: none; max-width: 980px; margin: 0 auto; }
+
+.sre { --astra:#2f9e67; --argon:#f09630; --deepseek:#c7362c; --good:#0ca30c; --bad:#d03b3b; --warn:#fab219;
+       --ink:#3d4144; --ink2:#5f6468; --muted:#7a8288; --rule:#e6e8ea; --wash:#f7f8f9; --navy:#33475b; }
+.sre { color: var(--ink); }
+.sre p, .sre li { line-height: 1.6; }
+.sre .lede { font-family: Georgia, Times, serif; font-size: 1.12em; color: var(--ink2); margin: 0 0 .6em; }
+.sre .byline { font-size: .8em; color: var(--muted); margin-bottom: 1.6em; }
+.sre h2 { margin-top: 2.2em; font-size: 1.35em; }
+.sre figure { margin: 1.2em 0 1.6em; }
+.sre figure img { display: block; width: 100%; height: auto; border-radius: 4px; }
+.sre figcaption { font-family: Georgia, Times, serif; font-size: .8em; color: var(--ink2); margin-top: .55em; line-height: 1.5; }
+.sre figcaption b { font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif; font-weight: 600; color: var(--ink); }
+.sre .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 6px; vertical-align: 1px; }
+.sre .d-astra { background: var(--astra); } .sre .d-argon { background: var(--argon); } .sre .d-deepseek { background: var(--deepseek); }
+.sre figcaption, .sre .note, .sre .legend-line, .sre .footnote, .sre .intro { text-align: left; }
+.sre .tip { position: absolute; pointer-events: none; background: #1f2933; color: #fff; font-size: .72em; padding: 5px 8px; border-radius: 4px; white-space: nowrap; opacity: 0; transition: opacity .1s; z-index: 5; }
+.sre .hit { position: absolute; inset: -3px 0; cursor: default; }
+
+.sre .solved { position: relative; margin: 1.4em 0 1.8em; }
+.sre .ctitle { font-size: .8em; font-weight: 600; margin-bottom: 8px; }
+.sre .srow { display: grid; grid-template-columns: 10.5em 1fr; gap: 10px; align-items: center; margin: 7px 0; }
+.sre .sname { font-size: .8em; white-space: nowrap; }
+.sre .strack { position: relative; height: 20px; margin-right: 5.5em; background: #eef0f2; border-radius: 0 4px 4px 0; }
+.sre .strack .bar { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 0 4px 4px 0; }
+.sre .strack .val { position: absolute; top: 0; line-height: 20px; font-size: .74em; padding-left: 7px; white-space: nowrap; }
+.sre .strack .val small { color: var(--muted); font-size: .92em; margin-left: 3px; }
+
+.sre .tabs { display: flex; flex-wrap: wrap; gap: 6px; margin: 1em 0 1.1em; }
+.sre .tabs button, .sre .camtabs button { font: inherit; font-size: .74em; padding: 4px 11px; border: 1px solid #d5d9dc; background: #fff; color: var(--ink2); border-radius: 14px; cursor: pointer; }
+.sre .tabs button:hover, .sre .camtabs button:hover { border-color: var(--muted); }
+.sre .tabs button.on, .sre .camtabs button.on { background: var(--navy); border-color: var(--navy); color: #fff; }
+.sre .intro { font-size: .88em; color: var(--ink2); }
+.sre .viewer h3 { font-size: 1em; margin: 0 0 .5em; }
+.sre .goalbox { background: var(--wash); border-radius: 6px; padding: 10px 12px 12px; }
+.sre .goalhead { display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: center; }
+.sre .glabel { font-size: .72em; font-weight: 600; color: var(--ink2); }
+.sre .camtabs { display: flex; gap: 4px; }
+.sre .camtabs button { font-size: .66em; padding: 2px 8px; }
+.sre .gstrip { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; align-items: flex-start; }
+.sre .gstrip figure { display: block; margin: 0; flex: 1 1 0; max-width: 300px; min-width: 0; }
+.sre .gstrip figure img { border-radius: 4px; margin: 0; }
+.sre .gstrip figcaption { font-family: inherit; font-size: .68em; color: var(--muted); margin: 4px 0 0; }
+.sre .gstrip .arrow { align-self: center; color: var(--muted); font-size: .9em; margin-top: -1.2em; }
+.sre .gtext { font-size: .8em; color: var(--ink); margin: 6px 0 0; }
+.sre .viewer > figure { margin: .9em 0 .5em; }
+.sre .note { font-size: .88em; color: var(--ink2); margin: 0; }
+
+.sre .chart { margin: 1.2em 0 .4em; position: relative; }
+.sre .chart .legend { display: flex; gap: 16px; font-size: .76em; color: var(--ink2); margin-bottom: 10px; flex-wrap: wrap; }
+.sre .chart .group { margin: 0 0 14px; }
+.sre .chart .gtitle { font-size: .8em; font-weight: 600; margin-bottom: 5px; }
+.sre .chart .gtitle span { font-weight: 400; color: var(--muted); }
+.sre .chart .row { display: grid; grid-template-columns: 1fr; margin: 4px 0; }
+.sre .chart .track { position: relative; height: 18px; border-left: 1px solid #c9ced2; }
+.sre .chart .bar { position: absolute; left: 0; top: 0; height: 18px; border-radius: 0 4px 4px 0; min-width: 2px; }
+.sre .chart .val { position: absolute; top: 0; font-size: .72em; line-height: 18px; color: var(--ink); white-space: nowrap; padding-left: 6px; }
+
+.sre table.scores { width: 100%; border-collapse: collapse; font-size: .8em; margin: 1em 0 .4em; display: table; }
+.sre table.scores th, .sre table.scores td { padding: 6px 8px; border-bottom: 1px solid var(--rule); text-align: left; }
+.sre table.scores thead th { font-size: .9em; color: var(--ink2); border-bottom: 2px solid #d5d9dc; }
+.sre table.scores td.c { text-align: center; white-space: nowrap; }
+.sre table.scores tr.grp td { background: var(--wash); font-weight: 600; font-size: .9em; color: var(--ink2); padding-top: 8px; }
+.sre table.scores tr.mean td { font-weight: 600; border-bottom: 2px solid #d5d9dc; }
+.sre .s { display: inline-flex; align-items: center; gap: 5px; }
+.sre .s i { font-style: normal; display: inline-flex; width: 16px; height: 16px; border-radius: 50%; align-items: center; justify-content: center; font-size: 10px; color: #fff; font-weight: 700; }
+.sre .s.ok i { background: var(--good); } .sre .s.no i { background: var(--bad); } .sre .s.part i { background: var(--warn); color: #0b0b0b; }
+.sre .s small { color: var(--muted); font-size: .85em; }
+.sre .footnote { font-size: .72em; color: var(--muted); }
+
+.sre .atoms { margin: 1em 0 .4em; }
+.sre .fam { display: grid; grid-template-columns: 9.5em 1fr; gap: 8px; align-items: baseline; padding: 5px 0; border-bottom: 1px solid var(--rule); }
+.sre .fam:last-child { border-bottom: 0; }
+.sre .fam .fname { font-size: .74em; color: var(--ink2); font-weight: 600; }
+.sre .chips { display: flex; flex-wrap: wrap; gap: 4px; }
+.sre .chip { font-size: .68em; padding: 2px 7px; border-radius: 10px; border: 1px solid #d5d9dc; color: var(--muted); white-space: nowrap; cursor: default; }
+.sre .chip.on { background: var(--navy); border-color: var(--navy); color: #fff; }
+.sre .chip b { font-weight: 700; margin-right: 3px; }
+.sre .legend-line { font-size: .74em; color: var(--muted); margin-top: .5em; }
+.sre .legend-line .chip { font-size: .95em; }
+
+.sre .split { display: grid; grid-template-columns: 1.05fr 1fr; gap: 22px; align-items: start; }
+.sre .rules { list-style: none; padding: 0; margin: .2em 0 0; }
+.sre .rules li { font-size: .88em; padding: 8px 0; border-bottom: 1px solid var(--rule); display: grid; grid-template-columns: 5.2em 1fr; text-align: left; }
+.sre .rules li:last-child { border-bottom: 0; }
+.sre .rules b { color: var(--ink); }
+
+@media (max-width: 900px) {
+  .sre .split { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .sre .srow { grid-template-columns: 1fr; gap: 3px; }
+  .sre .fam { grid-template-columns: 1fr; gap: 3px; }
+  .sre .gstrip figure { flex: 0 1 calc(50% - 4px); max-width: none; }
+  .sre .gstrip .arrow { display: none; }
+  .sre table.scores { font-size: .72em; }
+}
+</style>
+
+<div class="sre">
+<p class="byline">October 2026</p>
+<p>Spatial reasoning is a fundamental cognitive capability for motor skills. A robot needs it to understand where objects are, how they are going to transform, and how they co-exist in the space, before robots can make wise physical decisions. Today, many researchers and hobbiests are using frontier models to drive robots, so the question emerges: Are these frontier models good at spatial reasoning?</p>
+<p>SRE-0.1 puts that question through interactive 3D tasks in a physics simulator. A model sees only camera images, moves things one step at a time, and is scored on where they end up. Here is one task, attempted by GPT-6 Astra, Gemini Argon, and Deepseek V4.1 flash:</p>
+
+<figure>
+  <img src="/images/sre/compare-q29.gif" alt="Three models attempt the bent-rod insertion task side by side">
+  <figcaption><b>Q29 · Steer a bent rod by its handle until its far tip is seated in a socket.</b></figcaption>
+</figure>
+
+<p>Preliminary results already show significant capability gaps between 3 frontier models:</p>
+<div class="solved" id="solved">
+  <div class="ctitle">% of tasks solved</div>
+  <div class="srow"><div class="sname">GPT-6 Astra</div><div class="strack"><div class="bar" style="width:83.3%;background:var(--astra)"></div><div class="val" style="left:83.3%">83%</div><div class="hit" data-tip="GPT-6 Astra · 10 of 12 solved · mean score 0.83"></div></div></div>
+  <div class="srow"><div class="sname">Gemini 4 Argon</div><div class="strack"><div class="bar" style="width:33.3%;background:var(--argon)"></div><div class="val" style="left:33.3%">33%</div><div class="hit" data-tip="Gemini 4 Argon · 4 of 12 solved · mean score 0.39"></div></div></div>
+  <div class="srow"><div class="sname">DeepSeek V4.1 Flash</div><div class="strack"><div class="bar" style="width:8.3%;background:var(--deepseek)"></div><div class="val" style="left:8.3%">8%</div><div class="hit" data-tip="DeepSeek V4.1 Flash · 1 of 12 solved · mean score 0.17"></div></div></div>
+  <div class="tip"></div>
+</div>
+
+<h2>Side by Side Task Replay</h2>
+<p class="intro">Pick a task to see its replays. </p>
+<div class="tabs" id="tabs"></div>
+<div class="viewer">
+  <h3 id="cmp-title"></h3>
+  <p class="note" id="cmp-note"></p>
+  <div class="goalbox" id="cmp-goal"></div>
+  <figure>
+    <img id="cmp" src="/images/sre/compare-q10.gif" alt="Side-by-side comparison of three models on the selected task">
+  </figure>
+</div>
+
+<h2>Finding: Marked Goal v.s. Inferred Goal</h2>
+<p>One question splits the twelve tasks: <b>is the goal marked in the scene, or does it have to be inferred?</b></p>
+
+<!-- <div class="chart" id="chart">
+  <div class="legend"><span><span class="dot d-astra"></span>GPT-6 Astra</span><span><span class="dot d-argon"></span>Gemini 4 Argon</span><span><span class="dot d-deepseek"></span>DeepSeek V4.1 Flash</span></div>
+  <div class="group">
+    <div class="gtitle">Goal marked in the scene <span>· Q16, Q28, Q43, Q46, Q48, Q50</span></div>
+    <div class="row"><div class="track"><div class="bar" style="width:calc((100% - 3.2em) * .667);background:var(--astra)"></div><div class="val" style="left:calc((100% - 3.2em) * .667)">0.67</div><div class="hit" data-tip="GPT-6 Astra · marked goal · mean 0.67 · 4/6 solved, misses Q43 and Q46"></div></div></div>
+    <div class="row"><div class="track"><div class="bar" style="width:calc((100% - 3.2em) * .778);background:var(--argon)"></div><div class="val" style="left:calc((100% - 3.2em) * .778)">0.78</div><div class="hit" data-tip="Gemini 4 Argon · marked goal · mean 0.78 · 4/6 solved, Q48 partial (0.67)"></div></div></div>
+    <div class="row"><div class="track"><div class="bar" style="width:calc((100% - 3.2em) * .333);background:var(--deepseek)"></div><div class="val" style="left:calc((100% - 3.2em) * .333)">0.33</div><div class="hit" data-tip="DeepSeek V4.1 Flash · marked goal · mean 0.33 · 1/6 solved"></div></div></div>
+  </div>
+  <div class="group">
+    <div class="gtitle">Goal inferred through a 3D transformation <span>· Q10, Q16H, Q18, Q24, Q27, Q29</span></div>
+    <div class="row"><div class="track"><div class="bar" style="width:calc(100% - 3.2em);background:var(--astra)"></div><div class="val" style="left:calc(100% - 3.2em)">1.00</div><div class="hit" data-tip="GPT-6 Astra · inferred goal · mean 1.00 · 6/6 solved"></div></div></div>
+    <div class="row"><div class="track"><div class="bar" style="width:2px;background:var(--argon)"></div><div class="val" style="left:2px">0.00</div><div class="hit" data-tip="Gemini 4 Argon · inferred goal · mean 0.00 · 0/6 solved"></div></div></div>
+    <div class="row"><div class="track"><div class="bar" style="width:2px;background:var(--deepseek)"></div><div class="val" style="left:2px">0.00</div><div class="hit" data-tip="DeepSeek V4.1 Flash · inferred goal · mean 0.00 · 0/6 solved"></div></div></div>
+  </div>
+  <div class="tip"></div>
+</div> -->
+
+<p>When the goal is marked, Argon keeps pace with Astra, and it solves the rope task that Astra misses. When the goal has to be inferred, Astra solves all six and Argon solves none. Argon fails to understand 3D transformations as well as Astra.</p>
+
+<table class="scores">
+  <thead><tr><th>Task</th><th class="c"><span class="dot d-astra"></span>Astra</th><th class="c"><span class="dot d-argon"></span>Argon</th><th class="c"><span class="dot d-deepseek"></span>DeepSeek</th></tr></thead>
+  <tbody>
+    <tr class="grp"><td colspan="4">Goal marked in the scene</td></tr>
+    <tr><td>Q16 Four-pin insertion</td><td class="c"><span class="s ok"><i>✓</i>1.00 <small>14 st</small></span></td><td class="c"><span class="s ok"><i>✓</i>1.00 <small>10 st</small></span></td><td class="c"><span class="s part"><i>◐</i>0.25 <small>100 st*</small></span></td></tr>
+    <tr><td>Q28 L-block, two doors</td><td class="c"><span class="s ok"><i>✓</i>1.00 <small>11 st</small></span></td><td class="c"><span class="s ok"><i>✓</i>1.00 <small>13 st</small></span></td><td class="c"><span class="s no"><i>✕</i>0.00 <small>100 st</small></span></td></tr>
+    <tr><td>Q43 Blind keyed insertion</td><td class="c"><span class="s no"><i>✕</i>0.00 <small>80 st</small></span></td><td class="c"><span class="s no"><i>✕</i>0.00 <small>14 st</small></span></td><td class="c"><span class="s no"><i>✕</i>0.00 <small>35 st</small></span></td></tr>
+    <tr><td>Q46 Rope through two rings</td><td class="c"><span class="s no"><i>✕</i>0.00 <small>34 st</small></span></td><td class="c"><span class="s ok"><i>✓</i>1.00 <small>50 st</small></span></td><td class="c"><span class="s no"><i>✕</i>0.00 <small>54 st</small></span></td></tr>
+    <tr><td>Q48 Blocked-move recovery</td><td class="c"><span class="s ok"><i>✓</i>1.00 <small>9 st</small></span></td><td class="c"><span class="s part"><i>◐</i>0.67 <small>11 st</small></span></td><td class="c"><span class="s part"><i>◐</i>0.75 <small>15 st</small></span></td></tr>
+    <tr><td>Q50 Withdraw the support</td><td class="c"><span class="s ok"><i>✓</i>1.00 <small>11 st</small></span></td><td class="c"><span class="s ok"><i>✓</i>1.00 <small>13 st</small></span></td><td class="c"><span class="s ok"><i>✓</i>1.00 <small>53 st</small></span></td></tr>
+    <tr class="grp"><td colspan="4">Goal inferred through a 3D transformation</td></tr>
+    <tr><td>Q10 Rotation transfer</td><td class="c"><span class="s ok"><i>✓</i>1.00 <small>10 st</small></span></td><td class="c"><span class="s no"><i>✕</i>0.00 <small>9 st</small></span></td><td class="c"><span class="s no"><i>✕</i>0.00 <small>19 st</small></span></td></tr>
+    <tr><td>Q16H Four shapes, tilted start</td><td class="c"><span class="s ok"><i>✓</i>1.00 <small>66 st</small></span></td><td class="c"><span class="s no"><i>✕</i>0.00 <small>28 st</small></span></td><td class="c"><span class="s no"><i>✕</i>0.00 <small>35 st</small></span></td></tr>
+    <tr><td>Q18 Articulated chain</td><td class="c"><span class="s ok"><i>✓</i>1.00 <small>10 st</small></span></td><td class="c"><span class="s no"><i>✕</i>0.00 <small>2 st</small></span></td><td class="c"><span class="s no"><i>✕</i>0.00 <small>70 st</small></span></td></tr>
+    <tr><td>Q24 Recover the camera pose</td><td class="c"><span class="s ok"><i>✓</i>1.00 <small>4 st</small></span></td><td class="c"><span class="s no"><i>✕</i>0.00 <small>99 st</small></span></td><td class="c"><span class="s no"><i>✕</i>0.00 <small>98 st</small></span></td></tr>
+    <tr><td>Q27 Multi-view assembly</td><td class="c"><span class="s ok"><i>✓</i>1.00 <small>48 st</small></span></td><td class="c"><span class="s no"><i>✕</i>0.00 <small>37 st</small></span></td><td class="c"><span class="s no"><i>✕</i>0.00 <small>39 st</small></span></td></tr>
+    <tr><td>Q29 Bent-rod insertion</td><td class="c"><span class="s ok"><i>✓</i>1.00 <small>58 st</small></span></td><td class="c"><span class="s no"><i>✕</i>0.00 <small>100 st</small></span></td><td class="c"><span class="s no"><i>✕</i>0.00 <small>98 st</small></span></td></tr>
+    <tr class="mean"><td>Mean · solved</td><td class="c">0.83 · 10/12</td><td class="c">0.39 · 4/12</td><td class="c">0.17 · 1/12</td></tr>
+  </tbody>
+</table>
+<p class="footnote">Scores are in [0, 1]. "st" is environment steps used, out of 100. One recorded episode per model and task. *DeepSeek's Q16 ran on an earlier harness and is not directly comparable.</p>
+
+<h2>How the tasks are designed: Taxonomy of spatial reasoning</h2>
+<p>Spatial reasoning is too broad to test as a single skill, so we break it into <b>33 atomic capabilities</b> in eight families. An atom is one computation: a declared kind of evidence goes in, one spatial quantity comes out. Each task is built as a chain of atoms, and together the current tasks have covered 19 of the 33. More tasks are to be built to provide a higher coverage.</p>
+<div class="atoms" id="atoms">
+  <div class="fam"><div class="fname">G · Interface</div><div class="chips">
+    <span class="chip on" data-t="Q48"><b>G1</b>Referential grounding</span><span class="chip"><b>G2</b>Spatial terms</span><span class="chip"><b>P1</b>Segmentation</span></div></div>
+  <div class="fam"><div class="fname">P · Perception</div><div class="chips">
+    <span class="chip"><b>P2</b>Position</span><span class="chip on" data-t="Q43"><b>P3</b>Orientation</span><span class="chip"><b>P4</b>Size</span><span class="chip on" data-t="Q16H"><b>P5</b>Shape</span><span class="chip on" data-t="Q43"><b>P6</b>Occlusion</span><span class="chip on" data-t="Q16, Q24, Q27, Q46"><b>P7</b>Correspondence</span><span class="chip on" data-t="Q24"><b>P8</b>Camera pose</span><span class="chip"><b>P9</b>Motion</span><span class="chip"><b>P10</b>Cue fusion</span></div></div>
+  <div class="fam"><div class="fname">R · Relations &amp; frames</div><div class="chips">
+    <span class="chip"><b>R1</b>Frame choice</span><span class="chip on" data-t="Q10, Q24, Q29"><b>R2</b>Frame change</span><span class="chip on" data-t="Q48"><b>R3</b>Direction</span><span class="chip on" data-t="Q28, Q46"><b>R4</b>Topology</span><span class="chip on" data-t="Q16, Q24, Q29, Q50"><b>R5</b>Metric relation</span><span class="chip on" data-t="Q18, Q27, Q46"><b>R6</b>Configuration</span><span class="chip on" data-t="Q16H"><b>R7</b>Shape matching</span></div></div>
+  <div class="fam"><div class="fname">T · Transformations</div><div class="chips">
+    <span class="chip on" data-t="Q10, Q16H, Q28, Q29"><b>T1</b>Rigid</span><span class="chip"><b>T2</b>Scaling</span><span class="chip on" data-t="Q18"><b>T3</b>Articulated</span><span class="chip"><b>T4a</b>Fold</span><span class="chip"><b>T4b</b>Section</span><span class="chip on" data-t="Q46"><b>T4c</b>Stretch / knot</span><span class="chip on" data-t="Q10, Q18"><b>T5</b>Infer a transform</span></div></div>
+  <div class="fam"><div class="fname">D · Dimensional</div><div class="chips">
+    <span class="chip on" data-t="Q27"><b>D1</b>2D → 3D</span><span class="chip"><b>D2</b>3D → 2D</span></div></div>
+  <div class="fam"><div class="fname">E · Physical</div><div class="chips">
+    <span class="chip on" data-t="Q50"><b>E1</b>Gravity &amp; support</span><span class="chip on" data-t="Q16, Q16H, Q28, Q29, Q43, Q48, Q50"><b>E2</b>Free space &amp; fit</span></div></div>
+  <div class="fam"><div class="fname">M · Memory</div><div class="chips"><span class="chip"><b>M1</b>Self-motion</span></div></div>
+  <div class="fam"><div class="fname">I · Inference</div><div class="chips"><span class="chip"><b>I1</b>Relation composition</span><span class="chip"><b>I2</b>Constraints</span></div></div>
+</div>
+<p class="legend-line"><span class="chip on">filled</span> used by an SRE-0.1 task (hover for which) &nbsp; <span class="chip">outlined</span> not yet covered. Tags mark the atoms a solution relies on. They are not isolated atom measurements.</p>
+
+<h2>How an episode runs</h2>
+<p>Every task follows the same loop.</p>
+<div class="split">
+  <figure style="margin-top:.4em">
+    <img src="/images/sre/stream-q29-astra.gif" alt="Sequence of camera images received by the model during one episode" loading="lazy">
+    <figcaption><b>What the model sees.</b> Astra's full Q29 episode, frame by frame, exactly as received: 26 looks and 32 moves. There is no pose readout, no error signal and no score.</figcaption>
+  </figure>
+  <ul class="rules">
+    <li><b>Observe</b><span>Images from a few fixed cameras, plus a step counter. That's all.</span></li>
+    <li><b>Act</b><span>Look through a camera, or move an object by a 6-DoF delta in a fixed world frame. Some tasks swap in their own tool: turn a joint, move a camera, grasp a rope at an image point.</span></li>
+    <li><b>Physics</b><span>MuJoCo, finite forces. Moves stop on contact, and nothing snaps or auto-aligns.</span></li>
+    <li><b>Budget</b><span>100 steps shared by looks, moves and invalid calls. Submitting is free.</span></li>
+    <li><b>Score</b><span>Geometry of the final state against the goal: pin depths, joint angles, tip pose, camera pose, rope route, stability after release.</span></li>
+  </ul>
+</div>
+
+</div>
+
+<script>
+(function () {
+  var D = '/images/sre/';
+  var replayAid = 'Goal pose · replay aid, not shown to the model';
+  function views(t, names) {
+    return names.map(function (n) { return [D + 'goal-' + t + '-' + n + '.png', n.charAt(0).toUpperCase() + n.slice(1)]; });
+  }
+  var tasks = [
+    { id: 'q10', label: 'Q10', title: 'Q10 · Rotation transfer',
+      goal: { label: 'Demonstration shown to the model', cams: ['oblique', 'top', 'front', 'side'],
+              frames: ['Start', 'After rotation 1', 'After rotation 2'] },
+      note: 'The demonstration turns one part by 55°, then makes a second turn. The task is to repeat both turns on a differently shaped part. Astra reproduces both within 1.6°. Argon and DeepSeek both rotate a full 90°, snapping to a canonical angle instead of reading the one shown.' },
+    { id: 'q16', label: 'Q16', title: 'Q16 · Four-pin insertion',
+      goal: { label: replayAid, imgs: [[D + 'goal-q16.png', 'Pins seated in their color-marked holes']] },
+      note: 'Color dots give away the correspondence. Argon matches Astra here and is more precise (0.6–0.8 mm vs. about 3 mm pin error). DeepSeek ran on an earlier harness and is not directly comparable.' },
+    { id: 'q16h', label: 'Q16H', title: 'Q16H · Four shapes, tilted start',
+      goal: { text: 'Goal: insert four same-colored pins (L, T, cross, zigzag) into their matching holes. The holes carry no marks, and the carrier starts about 145° from the goal.' },
+      note: 'Without the color cue and from a start about 145° away, Argon hovers 4–8 mm off the holes and never inserts (0 mm depth). Astra recovers the full orientation and seats all four pins at 30 mm, using 66 steps, 22 of them on new views.' },
+    { id: 'q18', label: 'Q18', title: 'Q18 · Articulated chain',
+      goal: { label: 'Target configuration shown to the model', imgs: views('q18', ['oblique', 'front', 'top']) },
+      note: 'Argon turns one joint 180°, turns it back, decides the unchanged chain is "pixel-for-pixel identical" to the target, and submits after 2 steps. DeepSeek fixes 1 of 4 joints in 70 steps. Astra gets all four exact in 6 joint turns.' },
+    { id: 'q24', label: 'Q24', title: 'Q24 · Recover the camera pose',
+      goal: { label: 'Reference images shown to the model',
+              imgs: [[D + 'goal-q24-1.png', 'Target photo, from the pose camera B must return to'], [D + 'goal-q24-2.png', 'Fixed camera A, the reference frame for moves']] },
+      note: 'The panels show what movable camera B sees. Astra reads its pose off the marked poles and lands within 0.4 cm and 0.2° of the target in 4 steps. Argon and DeepSeek wander for 99 and 98 steps and end 80 cm and 92 cm away, with the board barely in view.' },
+    { id: 'q27', label: 'Q27', title: 'Q27 · Multi-view assembly',
+      goal: { label: 'Target structure shown to the model', imgs: views('q27', ['oblique', 'front', 'side', 'top']) },
+      note: 'Argon orients all four hooks correctly (within 1.6°) but places two of them 30–37 mm off. DeepSeek misorients three by more than 115°. Astra puts all four within 1.6 mm.' },
+    { id: 'q28', label: 'Q28', title: 'Q28 · L-block, two doors',
+      goal: { text: 'Goal: thread the block through both doors into the green exit zone, which is visible in the scene.' },
+      note: 'The goal is visible, and Astra (11 steps) and Argon (13) both thread the block through both doors. DeepSeek clears the first door and runs out of steps at the second.' },
+    { id: 'q29', label: 'Q29', title: 'Q29 · Bent-rod insertion',
+      goal: { label: replayAid, imgs: [[D + 'goal-q29.png', 'Keyed tip seated in the socket']] },
+      note: 'The rod is a 37 cm rigid lever steered from its handle. Astra seats the keyed tip 34.6 mm deep (33 mm required). After 100 steps Argon is 59 mm and 97° away. DeepSeek ends 108 mm and 131° away.' },
+    { id: 'q43', label: 'Q43', title: 'Q43 · Blind keyed insertion',
+      goal: { text: 'Goal: seat the cylinder fully, with its key in the slot at the bottom of the hole. Once the cylinder enters, it hides the slot, and the pattern on its top becomes the main cue for its rotation.' },
+      note: 'All three get the cylinder upright inside the hole, then stall 4.7 mm short of seated, with the key 23° (Astra, Argon) or 49° (DeepSeek) off the slot. Astra keeps probing for 80 steps. Argon stops after 14.' },
+    { id: 'q46', label: 'Q46', title: 'Q46 · Rope through two rings',
+      goal: { label: 'Start state shown to the model', imgs: [[D + 'goal-q46-1.png', 'The segment ringed in magenta flashes once at the start']],
+              text: 'Goal: from fixed end A, pass ring 1 front to back, then ring 2 back to front. Drop the flashed segment in the green tray, then point to it.' },
+      note: 'All three get the flashed segment into the tray. Argon also builds the correct route and points within 0.5 cm of the segment. Astra builds the correct route but points 3.1 cm away (limit 1.2 cm). DeepSeek gets neither the route nor the point.' },
+    { id: 'q48', label: 'Q48', title: 'Q48 · Blocked-move recovery',
+      goal: { label: replayAid, imgs: [[D + 'goal-q48.png', 'Block inside the target box']] },
+      note: 'Astra diagnoses the block correctly and lands within 1 mm. Argon reaches the box (3 mm) but misreports the goal direction and misses the obstacle when pointing. DeepSeek diagnoses correctly but stops 52 mm short.' },
+    { id: 'q50', label: 'Q50', title: 'Q50 · Withdraw the support',
+      goal: { text: 'Goal: support in the green tray, beam level on its pedestal after release.' },
+      note: 'All three solve it. This is the only task DeepSeek passes. Astra takes 11 steps, Argon 13, and DeepSeek 53, 30 of them blocked moves.' }
+  ];
+
+  var img = document.getElementById('cmp');
+  var goal = document.getElementById('cmp-goal');
+  var tabs = document.getElementById('tabs');
+
+  function fig(src, cap) {
+    return '<figure><img src="' + src + '" alt="' + cap + '"><figcaption>' + cap + '</figcaption></figure>';
+  }
+  function demo(t, cam) {
+    var g = t.goal;
+    var cams = g.cams.map(function (c) {
+      return '<button type="button" data-cam="' + c + '" class="' + (c === cam ? 'on' : '') + '">' + c + '</button>';
+    }).join('');
+    var strip = g.frames.map(function (f, k) {
+      return (k ? '<span class="arrow">→</span>' : '') + fig(D + 'goal-' + t.id + '-' + cam + '-' + k + '.png', f);
+    }).join('');
+    goal.innerHTML = '<div class="goalhead"><span class="glabel">' + g.label + '</span><span class="camtabs">' + cams + '</span></div><div class="gstrip">' + strip + '</div>';
+    Array.prototype.forEach.call(goal.querySelectorAll('.camtabs button'), function (b) {
+      b.addEventListener('click', function () { demo(t, b.dataset.cam); });
+    });
+  }
+  function show(t) {
+    img.src = D + 'compare-' + t.id + '.gif';
+    document.getElementById('cmp-title').textContent = t.title;
+    document.getElementById('cmp-note').textContent = t.note;
+    var g = t.goal;
+    if (g.cams) {
+      demo(t, g.cams[0]);
+    } else {
+      var html = '';
+      if (g.imgs) {
+        html += '<div class="goalhead"><span class="glabel">' + g.label + '</span></div><div class="gstrip">' +
+          g.imgs.map(function (p) { return fig(p[0], p[1]); }).join('') + '</div>';
+      }
+      if (g.text) { html += '<p class="gtext">' + g.text + '</p>'; }
+      goal.innerHTML = html;
+    }
+    Array.prototype.forEach.call(tabs.children, function (b) { b.classList.toggle('on', b.dataset.id === t.id); });
+  }
+  tasks.forEach(function (t) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.dataset.id = t.id; b.textContent = t.label;
+    b.addEventListener('click', function () { show(t); });
+    tabs.appendChild(b);
+  });
+  show(tasks[0]);
+
+  Array.prototype.forEach.call(document.querySelectorAll('#solved, #chart'), function (chart) {
+    var tip = chart.querySelector('.tip');
+    Array.prototype.forEach.call(chart.querySelectorAll('.hit'), function (h) {
+      h.addEventListener('mouseenter', function () { tip.textContent = h.dataset.tip; tip.style.opacity = 1; });
+      h.addEventListener('mousemove', function (e) {
+        var r = chart.getBoundingClientRect();
+        var x = Math.min(e.clientX - r.left + 12, r.width - tip.offsetWidth);
+        tip.style.left = x + 'px'; tip.style.top = (e.clientY - r.top + 14) + 'px';
+      });
+      h.addEventListener('mouseleave', function () { tip.style.opacity = 0; });
+    });
+  });
+
+  Array.prototype.forEach.call(document.querySelectorAll('#atoms .chip.on'), function (c) {
+    c.title = 'Used by ' + c.dataset.t;
+  });
+})();
+</script>
